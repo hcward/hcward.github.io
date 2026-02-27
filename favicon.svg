@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="planetGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#b026ff" />
+      <stop offset="100%" stop-color="#3b0086" />
+    </linearGradient>
+    <linearGradient id="satGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" />
+      <stop offset="100%" stop-color="#0055ff" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Transform for the entire scene -->
+  <g transform="translate(50, 50) rotate(-25)">
+    <!-- Back Orbit (Top Half) -->
+    <!-- M startX startY A rx ry xAxisRotate LargeArc Sweep endX endY -->
+    <path d="M -48 0 A 48 16 0 0 0 48 0" fill="none" stroke="#00f3ff" stroke-width="2" opacity="0.35" stroke-dasharray="2 3"/>
+    
+    <!-- Planet Base -->
+    <circle cx="0" cy="0" r="32" fill="url(#planetGrad)" />
+    <!-- Planet Inner Glow / Atmosphere -->
+    <circle cx="0" cy="0" r="31" fill="none" stroke="#d580ff" stroke-width="1.5" opacity="0.6" />
+    
+    <!-- Front Orbit (Bottom Half) -->
+    <path d="M -48 0 A 48 16 0 0 1 48 0" fill="none" stroke="#00f3ff" stroke-width="3" filter="url(#glow)"/>
+    
+    <!-- Satellite (Orbiting on the front-left side) -->
+    <g transform="translate(-40, 8.8) rotate(30)">
+      <!-- Satellite Panels -->
+      <rect x="-11" y="-4" width="7" height="8" fill="url(#satGrad)" rx="1.5" />
+      <rect x="4" y="-4" width="7" height="8" fill="url(#satGrad)" rx="1.5" />
+      <!-- Satellite Body -->
+      <circle cx="0" cy="0" r="3.5" fill="#ffee00" filter="url(#glow)"/>
+    </g>
+
+    <!-- Small Star / Sparkle in background (optional to fill space) -->
+    <circle cx="38" cy="-35" r="2" fill="#ffee00" opacity="0.8" filter="url(#glow)"/>
+    <circle cx="-35" cy="30" r="1.5" fill="#ffee00" opacity="0.5" />
+  </g>
+</svg>
